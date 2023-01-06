@@ -1,16 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.serialization'
 }
 
 android {
     namespace 'com.bunkware.bunkyrecipe'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.bunkware.bunkyrecipe"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -37,7 +38,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.1.1'
+        kotlinCompilerExtensionVersion '1.3.1'
     }
     packagingOptions {
         resources {
@@ -60,4 +61,8 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3'
+    implementation "androidx.compose.material3:material3:1.0.0-alpha02"
+
+    implementation("androidx.navigation:navigation-compose:2.5.3")
 }
