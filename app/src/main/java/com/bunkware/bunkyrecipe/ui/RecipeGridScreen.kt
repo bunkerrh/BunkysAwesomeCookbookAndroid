@@ -1,4 +1,5 @@
 package com.bunkware.bunkyrecipe.views.recipeGridView
+import android.graphics.BitmapFactory
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -7,15 +8,14 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.bunkware.bunkyrecipe.models.Recipe
 import com.bunkware.bunkyrecipe.utils.*
-
-
+import java.util.Base64
 
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterialApi::class)
@@ -32,6 +32,8 @@ fun RecipeGridScreen(
             .fillMaxWidth(1f)
     ) {
         items(recipeList) { item ->
+            val decodedString = Base64.getDecoder().decode(item.image)
+            val decodedImage = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
             Card(
                 modifier = Modifier.padding(2.dp),
                 backgroundColor = primaryColor,
@@ -46,7 +48,7 @@ fun RecipeGridScreen(
                     val imageModifier = Modifier
                         .size(150.dp)
                     Image(
-                        painter = painterResource(item.image),
+                        bitmap = decodedImage.asImageBitmap(),
                         contentDescription = "Strogonoff",
                         contentScale = ContentScale.Crop,
                         modifier = imageModifier,

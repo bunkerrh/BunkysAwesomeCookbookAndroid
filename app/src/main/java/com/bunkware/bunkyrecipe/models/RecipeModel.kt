@@ -1,6 +1,9 @@
 package com.bunkware.bunkyrecipe.models
 
 import androidx.lifecycle.ViewModel
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,4 +25,13 @@ class RecipeModel: ViewModel() {
             )
         }
     }
+//    fun createRecipeList() {
+//        val jsonObject = JsonObjectRequest(
+//            "localhost:9091/recipe/getRecipes/1",
+//            Request.Method.GET,
+//            null
+//        ){
+//
+//        }
+//    }
 }

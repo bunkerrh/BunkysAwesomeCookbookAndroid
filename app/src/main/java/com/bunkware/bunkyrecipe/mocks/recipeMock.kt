@@ -1,5 +1,6 @@
 package com.bunkware.bunkyrecipe.mocks
 
+import android.graphics.BitmapFactory
 import com.bunkware.bunkyrecipe.R
 import com.bunkware.bunkyrecipe.models.Ingredient
 import com.bunkware.bunkyrecipe.models.Instruction
@@ -78,6 +79,7 @@ var instruction5: Instruction = Instruction(
 val ingredientArray = arrayListOf<Ingredient>(ingredient, onion, groundBeef, milk, sourCream, sugar)
 val instructionArray = arrayListOf<Instruction>(instruction, instruction2, instruction3, instruction4, instruction5)
 
+
 var recipeMock1: Recipe = Recipe(
     1,
     "Bunky strog1",
@@ -87,7 +89,7 @@ var recipeMock1: Recipe = Recipe(
     0,
     ingredientArray,
     instructionArray,
-    R.drawable.beef_stroganoff_2022_ig_3
+    rawLasagna
 )
 var recipeMock2: Recipe = Recipe(
     1,
@@ -98,7 +100,7 @@ var recipeMock2: Recipe = Recipe(
     0,
     ingredientArray,
     instructionArray,
-    R.drawable.beefs
+    rawStrog
 )
 var recipeMock3: Recipe = Recipe(
     1,
@@ -109,7 +111,7 @@ var recipeMock3: Recipe = Recipe(
     0,
     ingredientArray,
     instructionArray,
-    R.drawable.beef_stroganoff_2022_ig_3
+    rawLasagna
 )
 var recipeMock4: Recipe = Recipe(
     1,
@@ -120,7 +122,7 @@ var recipeMock4: Recipe = Recipe(
     0,
     ingredientArray,
     instructionArray,
-    R.drawable.beefs
+    rawStrog
 )
 
 var recipeMock5: Recipe = Recipe(
@@ -132,7 +134,7 @@ var recipeMock5: Recipe = Recipe(
     0,
     ingredientArray,
     instructionArray,
-    R.drawable.beef_stroganoff_2022_ig_3
+    rawLasagna
 )
 var recipeMock6: Recipe = Recipe(
     1,
@@ -143,7 +145,7 @@ var recipeMock6: Recipe = Recipe(
     0,
     ingredientArray,
     instructionArray,
-    R.drawable.beefs
+    rawStrog
 )
 
 var recipeMock7: Recipe = Recipe(
@@ -155,7 +157,7 @@ var recipeMock7: Recipe = Recipe(
     0,
     ingredientArray,
     instructionArray,
-    R.drawable.beef_stroganoff_2022_ig_3
+    rawLasagna
 )
 
 

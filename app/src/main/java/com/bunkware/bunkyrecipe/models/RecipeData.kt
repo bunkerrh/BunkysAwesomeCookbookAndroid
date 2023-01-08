@@ -8,6 +8,13 @@ data class RecipeUiState(
     val recipe: Recipe = recipeMock1
 )
 
+data class RecipeListUiState(
+    val recipe: ArrayList<Recipe>? = null,
+    val isLoading: Boolean = false,
+    val hasError: Boolean = false,
+    val errorMessage: String? = null
+)
+
 
 @Serializable
 data class Recipe(
@@ -19,7 +26,7 @@ data class Recipe(
     val timeSeconds: Int,
     val ingredients: ArrayList<Ingredient>,
     val instructions: ArrayList<Instruction>,
-    val image: Int
+    val image: String
 )
 
 
