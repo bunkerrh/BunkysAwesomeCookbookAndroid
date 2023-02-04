@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Scaffold
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -18,14 +17,13 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bunkware.bunkyrecipe.mocks.recipeMock1
-import com.bunkware.bunkyrecipe.models.Ingredient
-import com.bunkware.bunkyrecipe.models.Instruction
-import com.bunkware.bunkyrecipe.models.Recipe
+//import com.bunkware.bunkyrecipe.mocks.recipeMock1
+import com.bunkware.bunkyrecipe.recipe.models.*
 import com.bunkware.bunkyrecipe.utils.*
 
 // so what we want to do is set up a composable where we are creating text rows in this order Name, Cook Time, Ingredients List, Instruction. Somewhere we should probably add a picture
 
+/*
 @Preview
 @Composable
 fun RecipeViewTest() {
@@ -41,6 +39,7 @@ fun InstructionTest() {
 fun IngredientTest() {
     IngredientColumn(ingredients = recipeMock1.ingredients)
 }
+*/
 
 @Composable
 fun RecipeView(recipe: Recipe) {
@@ -53,7 +52,7 @@ fun RecipeView(recipe: Recipe) {
         ) {
             item {
                 Text(
-                    recipe.name,
+                    recipe.recipeName,
                     style = MaterialTheme.typography.subtitle1,
                     color = primaryTextColor,
                     maxLines = 1,
@@ -83,7 +82,7 @@ fun RecipeView(recipe: Recipe) {
 
 
 @Composable
-fun InstructionColumn(instructions: ArrayList<Instruction>) {
+fun InstructionColumn(instructions: List<Instruction>) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -95,7 +94,7 @@ fun InstructionColumn(instructions: ArrayList<Instruction>) {
     {
         instructions.forEach {
             Text(
-                "" + it.stepNo + ". " + it.stepInstruction,
+                "" + it.stepNo + ". " + it.stepInstructions,
                 style = MaterialTheme.typography.subtitle1,
                 color = primaryTextColor,
                 textAlign = TextAlign.Center,
@@ -112,7 +111,7 @@ fun InstructionColumn(instructions: ArrayList<Instruction>) {
 }
 
 @Composable
-fun IngredientColumn(ingredients: ArrayList<Ingredient>) {
+fun IngredientColumn(ingredients: List<Ingredient>) {
     var bullet = "\u2022"
     var paragraphStyle = ParagraphStyle(textIndent = TextIndent(restLine = 12.sp))
     Text(

@@ -1,5 +1,6 @@
-package com.bunkware.bunkyrecipe
+package com.bunkware.bunkyrecipe.ui.recipe
 
+import android.util.Log
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Scaffold
@@ -13,9 +14,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.bunkware.bunkyrecipe.utils.*
 import androidx.navigation.compose.rememberNavController
-import com.bunkware.bunkyrecipe.mocks.recipeArray
-import com.bunkware.bunkyrecipe.models.RecipeModel
-import com.bunkware.bunkyrecipe.views.recipeGridView.RecipeGridScreen
+import com.bunkware.bunkyrecipe.R
+import com.bunkware.bunkyrecipe.ui.RecipeGridScreen
 import com.bunkware.bunkyrecipe.views.recipeGridView.RecipeView
 
 enum class RecipeScreen(@StringRes val title: Int) {
@@ -23,17 +23,23 @@ enum class RecipeScreen(@StringRes val title: Int) {
     RecipePage(title = R.string.recipe_page)
 }
 
+
 @Preview
 @Composable
 fun RecipeBookTest() {
     RecipeBookApp()
 }
 
+
+
 @Composable
 fun RecipeBookApp(
-    navController: NavHostController = rememberNavController(),
-    recipeModel: RecipeModel = viewModel(),
+    navController: NavHostController = rememberNavController()
 ) {
+    Log.d("GetRecipe", "Still in Recipe Screen About to make hte call")
+
+    val recipeViewModel = viewModel(modelClass = RecipeViewModel::class.java)
+
     var editMode by remember { mutableStateOf(false) }
     Scaffold(
         backgroundColor = primaryBackgroundColor,
@@ -49,23 +55,20 @@ fun RecipeBookApp(
         },
         bottomBar = {
         }) { innerPadding ->
-        val recipeState by recipeModel.uiState.collectAsState()
-
         NavHost(
             navController,
             RecipeScreen.Start.name
         ) {
             composable(route = RecipeScreen.Start.name) {
                 RecipeGridScreen(
-                    recipeList = recipeArray,
                     onGridButtonClick = {
-                        recipeModel.setRecipe(it)
                         navController.navigate(RecipeScreen.RecipePage.name)
                     }
                 )
             }
             composable(route = RecipeScreen.RecipePage.name) {
-                RecipeView(recipeState.recipe)
+                val state = recipeViewModel.recipeState.collectAsState()
+                RecipeView(state.value)
             }
         }
     }

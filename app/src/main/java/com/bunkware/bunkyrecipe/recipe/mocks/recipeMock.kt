@@ -1,163 +1,152 @@
 package com.bunkware.bunkyrecipe.mocks
 
-import android.graphics.BitmapFactory
-import com.bunkware.bunkyrecipe.R
-import com.bunkware.bunkyrecipe.models.Ingredient
-import com.bunkware.bunkyrecipe.models.Instruction
-import com.bunkware.bunkyrecipe.models.Recipe
+import com.bunkware.bunkyrecipe.recipe.models.*
+
 
 var ingredient: Ingredient = Ingredient(
-    1,
-    "Garlic",
     "1",
-    "Teaspoon",
-    1
+    "Teasponn",
+    "Garlic"
 )
 var onion: Ingredient = Ingredient(
-    2,
-    "Yellow Onion",
-    "2",
     "",
-    1
+    "",
+    "Yellow Onion"
 )
 var groundBeef: Ingredient = Ingredient(
-    3,
-    "Ground Beef",
-    "1",
-    "pound",
-    1
+    "3",
+    "Pound",
+    "Ground Beef"
 )
 var milk: Ingredient = Ingredient(
-    4,
-    "Whole Milk",
-    "1",
-    "Gallon",
-    1
+    "4",
+    "Cups",
+    "Whole Milk"
 )
 var sourCream: Ingredient = Ingredient(
-    5,
-    "Sour Cream",
     "1/2",
-    "Cup",
-    1
+    "Cups",
+    "Sour Cream"
 )
 var sugar: Ingredient = Ingredient(
-    6,
-    "White Sugar",
     "1",
     "Cup",
-    1
+    "White Sugar"
 )
 
 
 var instruction: Instruction = Instruction(
-    1,
     "On medium high heat brown ground beef until cooked throughly",
-    1
+    1,
+
 )
 var instruction2: Instruction = Instruction(
-    2,
     "Dice Two Yellow Onions. Add onions to pan and cook until translucent. Bring to boil and allow to simmer",
-    1
+    2
+
 )
 var instruction3: Instruction = Instruction(
-    3,
     "Chop Mushroom carrots and milk. Once pan in simmering add Mushroom carrots and milk and cook until soft",
-    1
+    3
 )
 var instruction4: Instruction = Instruction(
-    4,
     "This is some test text to see what happens when we have a lot of text. The next one is just going to be lorem ipsum because why the hell not. I think it has a lot of letters",
-    1
+    4
 )
 var instruction5: Instruction = Instruction(
-    5,
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vulputate justo nec elit consectetur, ornare facilisis velit condimentum. Duis euismod dolor ante, id gravida augue maximus id. Nam vulputate nulla et ornare suscipit. Praesent vel hendrerit sapien, sit amet dictum sapien. Praesent lobortis, mi at tristique lobortis, diam turpis feugiat elit, eget vehicula est justo non augue. Quisque maximus nisi sit amet ipsum bibendum tempor. Vivamus vulputate lacus egestas mollis pharetra. Morbi vel sem enim. Quisque sed porta sapien. Nullam leo arcu, dapibus vitae tempus quis, posuere vel arcu. Quisque rutrum tempus dui, eget euismod arcu sagittis et. Integer et elementum neque, vitae consequat magna. Quisque facilisis tellus eget ligula accumsan laoreet. Fusce fermentum nisi vel augue consectetur posuere. Morbi efficitur scelerisque viverra. ",
-    1
+    5
 )
 
 val ingredientArray = arrayListOf<Ingredient>(ingredient, onion, groundBeef, milk, sourCream, sugar)
-val instructionArray = arrayListOf<Instruction>(instruction, instruction2, instruction3, instruction4, instruction5)
+val instructionArray =
+    arrayListOf<Instruction>(instruction, instruction2, instruction3, instruction4, instruction5)
 
 
 var recipeMock1: Recipe = Recipe(
-    1,
-    "Bunky strog1",
+    rawLasagna,
+"1",
+    ingredientArray,
+    instructionArray,
     false,
+    "Bunky strog1",
     1,
     45,
     0,
-    ingredientArray,
-    instructionArray,
-    rawLasagna
+
+
 )
 var recipeMock2: Recipe = Recipe(
-    1,
-    "beef strog2",
+    rawStrog,
+    "1",
+    ingredientArray,
+    instructionArray,
     false,
+    "beef strog2",
     1,
     45,
     0,
-    ingredientArray,
-    instructionArray,
-    rawStrog
+
+
 )
 var recipeMock3: Recipe = Recipe(
-    1,
-    "Bunk strog3",
+    rawLasagna,
+    "1",
+    ingredientArray,
+    instructionArray,
     false,
+    "Bunky strog1",
     1,
     45,
     0,
-    ingredientArray,
-    instructionArray,
-    rawLasagna
 )
 var recipeMock4: Recipe = Recipe(
-    1,
-    "beef strog4",
+    rawStrog,
+    "1",
+    ingredientArray,
+    instructionArray,
     false,
+    "beef strog2",
     1,
     45,
     0,
-    ingredientArray,
-    instructionArray,
-    rawStrog
-)
+
+    )
 
 var recipeMock5: Recipe = Recipe(
-    1,
-    "Bunky strog5",
+    rawLasagna,
+    "1",
+    ingredientArray,
+    instructionArray,
     false,
+    "Bunky strog1",
     1,
     45,
     0,
-    ingredientArray,
-    instructionArray,
-    rawLasagna
 )
 var recipeMock6: Recipe = Recipe(
-    1,
-    "beef strog6",
+    rawStrog,
+    "1",
+    ingredientArray,
+    instructionArray,
     false,
+    "beef strog2",
     1,
     45,
     0,
-    ingredientArray,
-    instructionArray,
-    rawStrog
-)
+
+    )
 
 var recipeMock7: Recipe = Recipe(
-    1,
-    "beef strog7",
+    rawLasagna,
+    "1",
+    ingredientArray,
+    instructionArray,
     false,
+    "Bunky strog1",
     1,
     45,
     0,
-    ingredientArray,
-    instructionArray,
-    rawLasagna
 )
 
 
@@ -170,3 +159,5 @@ var recipeArray = arrayListOf<Recipe>(
     recipeMock6,
     recipeMock7
 )
+
+var mockRecipeList = RecipeList(recipeArray)
