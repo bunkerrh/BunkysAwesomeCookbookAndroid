@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">BunkyRecipeBook</string>
+    <string name="app_name">BunkysRecipeBook</string>
+    <string name="recipe_page">Recipe Page</string>
 </resources>
