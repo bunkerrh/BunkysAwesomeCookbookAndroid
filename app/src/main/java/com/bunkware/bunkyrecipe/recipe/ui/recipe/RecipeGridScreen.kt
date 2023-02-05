@@ -1,6 +1,7 @@
 package com.bunkware.bunkyrecipe.ui
 
 import android.graphics.BitmapFactory
+import android.util.Base64
 import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -15,7 +16,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.bunkware.bunkyrecipe.ui.recipe.RecipeViewModel
 import com.bunkware.bunkyrecipe.utils.*
 import com.bunkware.bunkyrecipe.recipe.models.*
@@ -27,7 +28,7 @@ import com.bunkware.bunkyrecipe.recipe.models.*
 fun RecipeGridScreen(
     onGridButtonClick: (Recipe) -> Unit
 ) {
-    val recipeViewModel = viewModel(modelClass = RecipeViewModel::class.java)
+    val recipeViewModel = hiltViewModel<RecipeViewModel>()
     val state by recipeViewModel.state.collectAsState()
 
     val recipeList = state
@@ -40,18 +41,12 @@ fun RecipeGridScreen(
             .fillMaxWidth(1f)
     ) {
         items(recipeList) { item ->
-
-            Log.d(
-                "Decoding Images",
-                "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-            )
-            //val decodedString = Base64.getDecoder().decode(item.image)
-            val decodedString = android.util.Base64.decode(item.foodPic, android.util.Base64.DEFAULT)
-            Log.d("tag", decodedString.size.toString())
-
-            val decodedImage =
-                BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size - 1)
-            Log.d("After Decoding", decodedImage.toString())
+            var encodedString = item.foodPic.split(",")
+            Log.d("Decoding Images", "We are trying to decode the item: " + item.recipeName)
+            val imageBytes = Base64.decode(encodedString[1], Base64.DEFAULT)
+            Log.d("Decoding Images", "We are trying to create a bitmap of the image: " + item.recipeName)
+            val decodedMap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+            Log.d("Decoding Images", "Succesfully created an imagebitmap")
 
             Card(
                 modifier = Modifier.padding(2.dp),
@@ -69,7 +64,7 @@ fun RecipeGridScreen(
                     val imageModifier = Modifier
                         .size(150.dp)
                     Image(
-                        bitmap = decodedImage.asImageBitmap(),
+                        bitmap = decodedMap.asImageBitmap(),
                         contentDescription = "Strogonoff",
                         contentScale = ContentScale.Crop,
                         modifier = imageModifier,

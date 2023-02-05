@@ -8,7 +8,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -38,7 +38,7 @@ fun RecipeBookApp(
 ) {
     Log.d("GetRecipe", "Still in Recipe Screen About to make hte call")
 
-    val recipeViewModel = viewModel(modelClass = RecipeViewModel::class.java)
+    val recipeViewModel = hiltViewModel<RecipeViewModel>()
 
     var editMode by remember { mutableStateOf(false) }
     Scaffold(
