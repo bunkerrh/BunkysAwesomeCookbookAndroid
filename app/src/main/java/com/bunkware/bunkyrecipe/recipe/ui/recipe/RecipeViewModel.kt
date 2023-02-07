@@ -1,5 +1,6 @@
 package com.bunkware.bunkyrecipe.ui.recipe
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bunkware.bunkyrecipe.api.RecipeRepo
@@ -30,8 +31,16 @@ class RecipeViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val recipeList = recipeRepo.getAllRecipes()
-            _state.value = recipeList.recipeList
+            try
+            {
+                val recipeList = recipeRepo.getAllRecipes()
+                _state.value = recipeList.recipeList
+            }
+            catch (e: Exception)
+            {
+                Log.d("Server Call", "Error getting recipe list from server")
+            }
+
         }
     }
 }

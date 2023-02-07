@@ -11,10 +11,14 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import com.bunkware.bunkyrecipe.utils.*
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.bunkware.bunkyrecipe.R
+import com.bunkware.bunkyrecipe.mocks.recipeMock1
+import com.bunkware.bunkyrecipe.recipe.models.Recipe
 import com.bunkware.bunkyrecipe.ui.RecipeGridScreen
 import com.bunkware.bunkyrecipe.views.recipeGridView.RecipeView
 
@@ -38,7 +42,7 @@ fun RecipeBookApp(
 ) {
     Log.d("GetRecipe", "Still in Recipe Screen About to make hte call")
 
-    val recipeViewModel = hiltViewModel<RecipeViewModel>()
+    var recipe = recipeMock1
 
     var editMode by remember { mutableStateOf(false) }
     Scaffold(
@@ -62,13 +66,13 @@ fun RecipeBookApp(
             composable(route = RecipeScreen.Start.name) {
                 RecipeGridScreen(
                     onGridButtonClick = {
+                        recipe = it
                         navController.navigate(RecipeScreen.RecipePage.name)
                     }
                 )
             }
             composable(route = RecipeScreen.RecipePage.name) {
-                val state = recipeViewModel.recipeState.collectAsState()
-                RecipeView(state.value)
+                RecipeView(recipe)
             }
         }
     }

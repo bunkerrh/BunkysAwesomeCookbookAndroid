@@ -14,32 +14,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextIndent
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-//import com.bunkware.bunkyrecipe.mocks.recipeMock1
 import com.bunkware.bunkyrecipe.recipe.models.*
 import com.bunkware.bunkyrecipe.utils.*
-
-// so what we want to do is set up a composable where we are creating text rows in this order Name, Cook Time, Ingredients List, Instruction. Somewhere we should probably add a picture
-
-/*
-@Preview
-@Composable
-fun RecipeViewTest() {
-    RecipeView(recipe = recipeMock1)
-}
-@Preview
-@Composable
-fun InstructionTest() {
-    InstructionColumn(instructions = recipeMock1.instructions)
-}
-@Preview
-@Composable
-fun IngredientTest() {
-    IngredientColumn(ingredients = recipeMock1.ingredients)
-}
-*/
 
 @Composable
 fun RecipeView(recipe: Recipe) {
@@ -117,13 +95,22 @@ fun IngredientColumn(ingredients: List<Ingredient>) {
     Text(
         buildAnnotatedString {
             ingredients.forEach {
-                if (it.measurementAmount != "") {
+                if (it.measurementAmount != "" && it.measurement != "to taste") {
                     withStyle(style = paragraphStyle) {
                         append(bullet)
                         append("\t\t")
                         append(it.measurementAmount + " " + it.measurement + " " + it.name)
                     }
-                } else {
+                }
+                else if(it.measurement == "to taste")
+                {
+                    withStyle(style = paragraphStyle) {
+                        append(bullet)
+                        append("\t\t")
+                        append(it.name + " " + it.measurement)
+                    }
+                }
+                else {
                     withStyle(style = paragraphStyle) {
                         append(bullet)
                         append("\t\t")
