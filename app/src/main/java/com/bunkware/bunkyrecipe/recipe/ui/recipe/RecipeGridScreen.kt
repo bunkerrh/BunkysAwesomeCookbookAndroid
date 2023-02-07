@@ -22,7 +22,6 @@ import com.bunkware.bunkyrecipe.utils.*
 import com.bunkware.bunkyrecipe.recipe.models.*
 
 
-
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterialApi::class)
 @Composable
 fun RecipeGridScreen(
@@ -49,7 +48,8 @@ fun RecipeGridScreen(
                 backgroundColor = primaryColor,
                 onClick = {
                     recipeViewModel.setRecipe(item)
-                    onGridButtonClick(item) }
+                    onGridButtonClick(item)
+                }
             )
             {
                 Column(

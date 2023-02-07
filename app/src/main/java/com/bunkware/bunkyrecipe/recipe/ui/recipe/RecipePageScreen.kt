@@ -21,42 +21,41 @@ import com.bunkware.bunkyrecipe.utils.*
 
 @Composable
 fun RecipeView(recipe: Recipe) {
-        LazyColumn(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .background(primaryColor)
-                .padding(16.dp)
-                .fillMaxWidth()
-        ) {
-            item {
-                Text(
-                    recipe.recipeName,
-                    style = MaterialTheme.typography.subtitle1,
-                    color = primaryTextColor,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    textAlign = TextAlign.Center,
-                    fontSize = 40.sp
-                )
-                Spacer(Modifier.width(normalRadius))
-                Text(
-                    "Cook Time: ${recipe.timeHours}:${recipe.timeMinutes}:${recipe.timeSeconds}",
-                    style = MaterialTheme.typography.subtitle1,
-                    color = primaryTextColor,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    textAlign = TextAlign.Center,
-                    fontSize = 20.sp,
-                )
-                Spacer(Modifier.width(20.dp))
-                IngredientColumn(ingredients = recipe.ingredients)
-                Spacer(Modifier.width(20.dp))
-                InstructionColumn(instructions = recipe.instructions)
-            }
+    LazyColumn(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .background(primaryColor)
+            .padding(16.dp)
+            .fillMaxWidth()
+    ) {
+        item {
+            Text(
+                recipe.recipeName,
+                style = MaterialTheme.typography.subtitle1,
+                color = primaryTextColor,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                textAlign = TextAlign.Center,
+                fontSize = 40.sp
+            )
+            Spacer(Modifier.width(normalRadius))
+            Text(
+                "Cook Time: ${recipe.timeHours}:${recipe.timeMinutes}:${recipe.timeSeconds}",
+                style = MaterialTheme.typography.subtitle1,
+                color = primaryTextColor,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp,
+            )
+            Spacer(Modifier.width(20.dp))
+            IngredientColumn(ingredients = recipe.ingredients)
+            Spacer(Modifier.width(20.dp))
+            InstructionColumn(instructions = recipe.instructions)
         }
+    }
 
 }
-
 
 
 @Composable
@@ -101,16 +100,13 @@ fun IngredientColumn(ingredients: List<Ingredient>) {
                         append("\t\t")
                         append(it.measurementAmount + " " + it.measurement + " " + it.name)
                     }
-                }
-                else if(it.measurement == "to taste")
-                {
+                } else if (it.measurement == "to taste") {
                     withStyle(style = paragraphStyle) {
                         append(bullet)
                         append("\t\t")
                         append(it.name + " " + it.measurement)
                     }
-                }
-                else {
+                } else {
                     withStyle(style = paragraphStyle) {
                         append(bullet)
                         append("\t\t")

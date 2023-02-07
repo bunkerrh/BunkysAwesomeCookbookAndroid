@@ -31,13 +31,10 @@ class RecipeViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            try
-            {
+            try {
                 val recipeList = recipeRepo.getAllRecipes()
                 _state.value = recipeList.recipeList
-            }
-            catch (e: Exception)
-            {
+            } catch (e: Exception) {
                 Log.d("Server Call", "Error getting recipe list from server")
             }
 

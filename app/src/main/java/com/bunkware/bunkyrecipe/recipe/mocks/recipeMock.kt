@@ -39,7 +39,7 @@ var instruction: Instruction = Instruction(
     "On medium high heat brown ground beef until cooked throughly",
     1,
 
-)
+    )
 var instruction2: Instruction = Instruction(
     "Dice Two Yellow Onions. Add onions to pan and cook until translucent. Bring to boil and allow to simmer",
     2
@@ -65,7 +65,7 @@ val instructionArray =
 
 var recipeMock1: Recipe = Recipe(
     rawLasagna,
-"1",
+    "1",
     ingredientArray,
     instructionArray,
     false,
@@ -75,7 +75,7 @@ var recipeMock1: Recipe = Recipe(
     0,
 
 
-)
+    )
 var recipeMock2: Recipe = Recipe(
     rawStrog,
     "1",
@@ -88,7 +88,7 @@ var recipeMock2: Recipe = Recipe(
     0,
 
 
-)
+    )
 var recipeMock3: Recipe = Recipe(
     rawLasagna,
     "1",
